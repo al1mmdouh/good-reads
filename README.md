@@ -30,4 +30,77 @@ As a team, we have implemented the following features in this project:
 
 By combining these features, the Good-Reads Backend repository provides a robust and professional backend solution for managing books, authors, categories, and shelves, catering to the needs of both readers and admins.
 
-![Alt Text](url)
+![Models Diagram](https://github.com/al1mmdouh/good-reads/blob/main/models.png)
+
+-----------
+
+-> all
+get books
+get categories
+get authors
+
+-> admin
+create books
+create categories
+create authors
+
+edit books
+edit categories
+edit authors
+
+delete books
+delete categories
+delete authors
+
+-> user
+create list
+update list
+
+create rating
+update rating
+
+routers
+
+rating
+books
+categories
+authors
+search
+
+shared 
+project setup (ali)
+authentication (ali)
+code review (ali)
+pagination
+
+projection
+population
+
+filters
+
+-----------
+
+user stories 
+
+not logged in 
+/ authentication,authentication middleware
+
+logged in
+
+/ list (population,projection,filters,pagination)
+
+
+/categories categories
+/categories/id categories (population,projection,pagination)
+
+
+/books books (population,projection,pagination)
+/books/id books (population,projection,pagination)
+
+
+/authors authors (pagination)
+/authors/id authors (population,projection,pagination)
+
+/profile profile
+
+/search search (uses same screens as books)
