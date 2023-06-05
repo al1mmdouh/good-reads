@@ -7,7 +7,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const logger = require("./middlewares/morgan");
 const notfound = require("./routers/notFound");
-
+const error = require("./middlewares/error");
 
 // EXPRESS SERVER
 const app = express();
@@ -23,11 +23,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // morgan logger
 app.use(logger);
 
-
 // not fount route
 app.use(notfound);
 
-
+// error middleware
+app.use(error);
 
 // DB SERVER RUN
 mongoose
