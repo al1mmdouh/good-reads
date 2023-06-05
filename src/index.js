@@ -15,6 +15,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// ROUTES
+
+// morgan logger
+app.use(logger);
+
+
+
 // DB SERVER RUN
 mongoose
   .connect(`${process.env.MONGO_URI}`)
