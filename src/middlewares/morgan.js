@@ -4,7 +4,7 @@ const morgan = require("morgan");
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "access.log"),
+  path.join(__dirname+"/../", "access.log"),
   {
     flags: "as",
     encoding: "utf-8",
