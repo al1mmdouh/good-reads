@@ -12,7 +12,7 @@ const {
   userUpdateValidationRules,
 } = require("../models/user");
 
-const { validate } = require("../Middlewares/validation");
+const { validate } = require("../middlewares/validation");
 
 const { authenticate, checkRole } = require("../middlewares/auth"); // TODO: paths alias import
 
