@@ -6,7 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const logger = require("./middlewares/morgan");
-const notfound = require("./routers/notFound");
+const notfound = require("./routes/notfound");
 const error = require("./middlewares/error");
 
 // EXPRESS SERVER
@@ -34,7 +34,6 @@ mongoose
   .connect(`${process.env.MONGO_URI}`)
   .then(() => {
     console.log("DB Connected");
-    addAdmin();
     app.listen(process.env.PORT, () => {
       console.log(`Server started at port ${process.env.PORT}`);
     });
