@@ -5,6 +5,7 @@ const addBook = async (req, res, next) => {
     try {
       const newBook = await Book.create({
         ...req.body,
+        photo: req.file.filename
       });
       if(true){
         res.status(200).json({
@@ -26,6 +27,7 @@ const getAllBooks = async (req, res, next) => {
       const books = await Book.find({})
       .skip((pageNumber - 1) * booksPerPage)
       .limit(booksPerPage);
+
       res.status(200).json({
         status: "success",
         result: books.length,
@@ -80,8 +82,12 @@ const getAllBooks = async (req, res, next) => {
     console.log(req.body);
     try {
       const update = { ...req.body };
+      if (req.file) {
+        update.photo = req.file.filename;
+      }
       const book = await Book.findByIdAndUpdate(req.params.id, update, {
         new: true,
+        runValidators: true,
       });
       if (!book) {
         return res.status(404).json({

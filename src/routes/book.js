@@ -22,6 +22,13 @@ const { validate } = require("../middlewares/validation");
 
 const { authenticate, checkRole } = require("../middlewares/auth");
 
+const { multerFilter, multerStorageBook } = require("../Middlewares/multer");
+const upload = multer({
+  storage: multerStorageBook,
+  fileFilter: multerFilter,
+});
+
+
 book
   .route("/book")
   .get(getAllBooks) //All can get Books
@@ -39,6 +46,7 @@ book
   .get(
     authenticate,
     checkRole(["admin"]), //Admin only can create book
+    validate(bookCreationValidationRules),
     getAllBooksInOnePage //All can get Books
     ); //All can get Books
 
@@ -49,6 +57,7 @@ book
   .put(
     authenticate,
     checkRole(["admin"]), //Admin only can edit book
+    upload.single("photo"),// Multer middleware for file upload
     validate(bookUpdateValidationRules),
     updateBook
   )
