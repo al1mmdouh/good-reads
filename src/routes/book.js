@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const multer = require("multer");
 
 const book = Router();
 
@@ -18,11 +19,11 @@ const {
   } = require("./../models/book");
 
 
-const { validate } = require("../middlewares/validation");
+const  validate  = require("../middlewares/validation");
 
 const { authenticate, checkRole } = require("../middlewares/auth");
 
-const { multerFilter, multerStorageBook } = require("../Middlewares/multer");
+const { multerFilter, multerStorageBook } = require("../middlewares/multer");
 const upload = multer({
   storage: multerStorageBook,
   fileFilter: multerFilter,

@@ -17,7 +17,6 @@ const author = require("./routes/author");
 const book = require("./routes/book");
 const shelf = require("./routes/shelf");
 const rating = require("./routes/rating");
-const book = require("./Routers/book");
 
 // EXPRESS SERVER
 const app = express();

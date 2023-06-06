@@ -10,9 +10,9 @@ const {
 
 const { categoryValidationRules } = require("../models/category");
 
-const { validate } = require("../Middlewares/validation");
+const  validate  = require("../middlewares/validation");
 
-const { authenticate, checkRole } = require("../Middlewares/auth");
+const { authenticate, checkRole } = require("../middlewares/auth");
 
 category = new Router();
 
