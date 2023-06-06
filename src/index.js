@@ -27,6 +27,8 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/src/assets", express.static(path.join(__dirname, "../src/assets")));
+app.use(express.static('assets'));
 
 // ROUTES
 
