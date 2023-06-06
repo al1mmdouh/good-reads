@@ -5,7 +5,7 @@ const {
   ratingUpdateValidationRules,
 } = require("../models/rating");
 
-const { validate } = require("../middlewares/validation");
+const  validate  = require("../middlewares/validation");
 
 const { authenticate, checkRole } = require("../middlewares/auth"); // TODO: paths alias import
 
