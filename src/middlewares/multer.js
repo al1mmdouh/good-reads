@@ -31,4 +31,14 @@ const multerFilter = (_req, file, cb) => {
     }
   );
 
-  module.exports = { multerFilter, multerStorageBook};
+  const multerStorageAuthor = createStorageConfig(
+    "assets/img/authors",
+    (req, file) => {
+      const ext = file.mimetype.split("/")[1];
+      const fileName = `image-author-${req.body.firstName} ${req.body.lastName}-.${ext}`; // Set the file name for authors using author name from req.body
+      return fileName;
+    }
+  );
+  
+  
+  module.exports = { multerFilter, multerStorageBook,multerStorageAuthor};
