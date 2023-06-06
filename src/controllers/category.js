@@ -16,3 +16,31 @@ const getAllCategories = async (_req, res, next) => {
     next(error);
   }
 };
+
+const getCategoryById = async (req, res, next) => {
+    try {
+      const category = await Category.findById(req.params.id);
+  
+      if (!category) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Category not Found",
+        });
+      }
+  
+      const books = await Book.find({ category: category._id }).populate(
+        "category"
+      );
+  
+      res.status(200).json({
+        status: "success",
+        data: {
+          category,
+          books,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+  
