@@ -4,7 +4,7 @@ const {
   shelfCreateValidationRules,
   shelfUpdateValidationRules,
   shelfQueryValidationRules,
-} = require("../Models/shelf");
+} = require("../models/shelf");
 
 const validate = require("../middlewares/validation");
 
