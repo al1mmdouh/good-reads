@@ -100,7 +100,23 @@ const getAllBooks = async (req, res, next) => {
     }
   };
 
-
+  const deleteBook = async (req, res, next) => {
+    try {
+      const book = await Book.findByIdAndDelete(req.params.id);
+      if (!book) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Book not Found",
+        });
+      }
+      res.status(200).json({
+        status: "success",
+        data: null,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 
 
 
@@ -110,6 +126,7 @@ module.exports = {
     addBook,
     getAllBooksInOnePage,
     getBookById,
-    updateBook
+    updateBook,
+    deleteBook
 
 };

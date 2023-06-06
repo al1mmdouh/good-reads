@@ -8,7 +8,8 @@ const {
   addBook,
   getAllBooksInOnePage,
   getBookById,
-  updateBook
+  updateBook,
+  deleteBook
 } = require("../controllers/book");
 
 
@@ -26,6 +27,7 @@ book
   .route("/book/:id")
   .get(getBookById) //All can get Books by id
   .put(updateBook)
+  .delete(deleteBook);
 
 
 
