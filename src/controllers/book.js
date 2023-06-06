@@ -21,6 +21,25 @@ const addBook = async (req, res, next) => {
 
 const getAllBooks = async (req, res, next) => {
     try {
+    const { pageNumber } = req.query;
+    const booksPerPage = 3;
+      const books = await Book.find({})
+      .skip((pageNumber - 1) * booksPerPage)
+      .limit(booksPerPage);
+      res.status(200).json({
+        status: "success",
+        result: books.length,
+        data: {
+          books,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  const getAllBooksInOnePage = async (req, res, next) => {
+    try {
       const books = await Book.find({})
       res.status(200).json({
         status: "success",
@@ -38,8 +57,8 @@ const getAllBooks = async (req, res, next) => {
 
 
 
-
 module.exports = {
     getAllBooks,
-    addBook
+    addBook,
+    getAllBooksInOnePage
 };
