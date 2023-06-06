@@ -123,8 +123,41 @@ const getAllBooks = async (req, res, next) => {
       next(error);
     }
   };
+// search feature
 
+  const getSearch = async (req, res,next) => {
 
+    const {bookname} =req.params
+    try {
+      const totalbooks = await Book.find()
+      .populate("author")
+      .populate("category");
+    
+    const respons = [];
+    
+    await totalbooks.map(async (book) => {
+          if (
+            book.name.includes(bookname) ||
+            book.author.firstName.includes(bookname) ||
+            book.category.fullname.includes(bookname)
+          ) {
+            respons.push(book);
+          }
+        })
+    
+        res.status(200).json({
+          status: "success",
+          data: {
+            respons,
+          },
+        });
+        
+    
+    } catch (error) {
+      next(error)
+    }}
+  
+  
 
 
 module.exports = {
@@ -133,6 +166,6 @@ module.exports = {
     getAllBooksInOnePage,
     getBookById,
     updateBook,
-    deleteBook
-
+    deleteBook,
+    getSearch,
 };

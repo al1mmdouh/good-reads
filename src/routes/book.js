@@ -68,7 +68,10 @@ book
       deleteBook); //Admin only can delete book
 
 
-
+  book
+    .route("/book/search/:bookname")
+    .get(getSearch)
+    
 
 
 
