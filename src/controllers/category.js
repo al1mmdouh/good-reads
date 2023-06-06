@@ -43,4 +43,43 @@ const getCategoryById = async (req, res, next) => {
       next(error);
     }
   };
+
+  const createCategory = async (req, res, next) => {
+    try {
+      const newCategory = await Category.create({
+        ...req.body,
+      });
+      res.status(201).json({
+        status: "success",
+        data: {
+          category: newCategory,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  const updateCategory = async (req, res, next) => {
+    try {
+      const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      if (!category) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Category not Found",
+        });
+      }
+      res.status(200).json({
+        status: "success",
+        data: {
+          category,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
   
