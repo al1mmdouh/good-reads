@@ -12,22 +12,50 @@ const {
   deleteBook
 } = require("../controllers/book");
 
+const {
+    bookCreationValidationRules,
+    bookUpdateValidationRules,
+  } = require("./../models/book");
+
+
+const { validate } = require("../middlewares/validation");
+
+const { authenticate, checkRole } = require("../middlewares/auth");
 
 book
   .route("/book")
   .get(getAllBooks) //All can get Books
-  .post(addBook);
+  .post(
+    authenticate,
+    checkRole(["admin"]), //Admin only can create book
+    upload.single("photo"),// Multer middleware for file upload
+    validate(bookCreationValidationRules),
+    addBook
+  );
 
 
   book
   .route("/books")
-  .get(getAllBooksInOnePage) //All can get Books
+  .get(
+    authenticate,
+    checkRole(["admin"]), //Admin only can create book
+    getAllBooksInOnePage //All can get Books
+    ); //All can get Books
+
 
   book
   .route("/book/:id")
   .get(getBookById) //All can get Books by id
-  .put(updateBook)
-  .delete(deleteBook);
+  .put(
+    authenticate,
+    checkRole(["admin"]), //Admin only can edit book
+    validate(bookUpdateValidationRules),
+    updateBook
+  )
+  .delete(
+    authenticate,
+     checkRole(["admin"]),
+      deleteBook); //Admin only can delete book
 
 
 
