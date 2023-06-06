@@ -14,7 +14,7 @@ const {
   getAuthorById,
 } = require("../controllers/author");
 
-const { validate } = require("../middlewares/validation");
+const  validate  = require("../middlewares/validation");
 const { authenticate, checkRole } = require("../middlewares/auth");
 
 const multer = require("multer");
