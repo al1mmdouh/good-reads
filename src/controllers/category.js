@@ -100,3 +100,12 @@ const getCategoryById = async (req, res, next) => {
       next(error);
     }
   };
+
+  module.exports = {
+    getAllCategories,
+    getCategoryById,
+    deleteCategory,
+    createCategory,
+    updateCategory,
+  };
+  
