@@ -54,11 +54,62 @@ const getAllBooks = async (req, res, next) => {
   };
 
 
+  const getBookById = async (req, res, next) => {
+    try {
+      const book = await Book.findById(req.params.id);
+      if (!book) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Book not Found",
+        });
+      }
+      res.status(200).json({
+        status: "success",
+        data: {
+          book,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+
+
+  const updateBook = async (req, res, next) => {
+    console.log(req.body);
+    try {
+      const update = { ...req.body };
+      const book = await Book.findByIdAndUpdate(req.params.id, update, {
+        new: true,
+      });
+      if (!book) {
+        return res.status(404).json({
+          status: "fail",
+          message: "Book not Found",
+        });
+      }
+      res.status(200).json({
+        status: "success",
+        data: {
+          book,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+
+
 
 
 
 module.exports = {
     getAllBooks,
     addBook,
-    getAllBooksInOnePage
+    getAllBooksInOnePage,
+    getBookById,
+    updateBook
+
 };
